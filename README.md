@@ -65,8 +65,9 @@ The upstream repository is **not vendored here**; clone it next to `exp/`:
 ```bash
 git clone https://github.com/juliemasters/SessionControl.git code
 git -C code checkout e377e42
+cd exp
 python -m venv .venv && . .venv/bin/activate     # Windows: .venv\Scripts\activate
-pip install -r code/requirements.txt
+pip install -r ../code/requirements.txt
 ```
 
 Model weights are not redistributed. Obtain
@@ -75,8 +76,9 @@ Model weights are not redistributed. Obtain
 
 ## Run
 
+From `exp/` (the `cd` above):
+
 ```bash
-cd exp
 python prepare_local.py --data models/longmemeval/longmemeval_s \
   --manifest ../code/config/session_manifest.json --out data/prepared
 python build_extractive.py
