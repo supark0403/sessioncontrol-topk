@@ -1,0 +1,14 @@
+{
+  "n_sessions": 512,
+  "capture_ms": 44.7,
+  "save_ms": 0.5,
+  "key_kb": 169.6,
+  "write_median_s": 13.57,
+  "key_overhead_vs_write_pct": 0.333,
+  "total_key_build_s": 23.1,
+  "route_full_ms": 535.7,
+  "route_topk8_ms": 51.2,
+  "saving_per_query_ms": 484.50000000000006,
+  "breakeven_queries": 47.8,
+  "note": "route 값은 프리로드+2GPU 샤딩 기준(디스크 I/O 제거)."
+}

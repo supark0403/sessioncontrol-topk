@@ -1,0 +1,23 @@
+{
+  "model": "E:\\OPENCODE\\capstondesign\\exp\\models\\Llama-3.1-8B-Instruct",
+  "layers": [
+    13,
+    14,
+    15
+  ],
+  "dtype": "bf16",
+  "shard": true,
+  "sizes": [
+    8,
+    16,
+    32,
+    64,
+    128,
+    256,
+    512
+  ],
+  "repeats": 3,
+  "projector": "empirical",
+  "panel_note": "원본 8문항 패널 파일은 비공개 → 매니페스트 순서 첫 8개로 대체",
+  "scope": "원본 64세션 + 원본 규칙으로 생성한 448 extractive = 512. dtype bf16·2GPU 샤딩이라 원본 시간/정확도와 직접 비교 불가."
+}

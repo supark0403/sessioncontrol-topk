@@ -1,0 +1,15 @@
+# Original repo clone (see README: clone into ./code)
+code/
+
+# Runtime artifacts — regenerate with the scripts, never commit
+exp/.venv/
+exp/models/
+exp/data/
+exp/projection/
+exp/runs/
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db

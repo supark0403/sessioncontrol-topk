@@ -1,0 +1,19 @@
+{
+  "config": {
+    "shard": true,
+    "dtype": "bf16",
+    "model": "E:\\OPENCODE\\capstondesign\\exp\\models\\Llama-3.1-8B-Instruct",
+    "preload_seconds": 2.6,
+    "repeats": 5
+  },
+  "route": {
+    "512": {
+      "key_ms": 42.3,
+      "route_all_ms": 535.7,
+      "n": 40
+    }
+  },
+  "topk": {
+    "512/8": 51.2
+  }
+}

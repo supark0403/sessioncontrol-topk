@@ -1,0 +1,21 @@
+{
+  "completed": true,
+  "model": "E:\\OPENCODE\\capstondesign\\exp\\models\\Llama-3.1-8B-Instruct",
+  "dtype": "bf16",
+  "layers": [
+    13,
+    14,
+    15
+  ],
+  "real_sessions": 512,
+  "sizes": [
+    8,
+    16,
+    32,
+    64,
+    128,
+    256,
+    512
+  ],
+  "base_weights_restored": true
+}
