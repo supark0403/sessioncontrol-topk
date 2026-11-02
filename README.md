@@ -56,6 +56,19 @@ exp/        our scripts (the original code/ is never modified)
 results/    JSON behind every number above
 ```
 
+Shipped vs generated:
+
+- **448 extractive sessions** are not stored. `build_extractive.py` regenerates
+  them deterministically from the corpus, so the output is reproducible but not
+  vendored.
+- **The 8-question panel** is rebuilt by `build_panel.py`, which needs
+  `exp/hist_memory_scaling.json` — that file **is** included (our 64-question
+  measurement used to pick the subset). The chosen ids are recorded in
+  `results/local-512/evaluation.json` under `panel_ids`.
+- **The benchmark scripts** read `runs/local-512/items.json`, which the write
+  stage produces. Run `experiment_local.py --stage writes` first, or point
+  `--run` at an existing run directory.
+
 See `exp/README.md` for the file-by-file table (Korean) and the exact run order.
 
 ## Setup
