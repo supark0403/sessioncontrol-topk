@@ -72,7 +72,22 @@ pip install -r ../code/requirements.txt
 
 Model weights are not redistributed. Obtain
 `meta-llama/Llama-3.1-8B-Instruct` under its provider's terms and place it under
-`exp/models/`.
+`exp/models/`. `download.py` does this for you (gated repo, so `HF_TOKEN` is
+required):
+
+```bash
+HF_TOKEN=... python download.py
+```
+
+The benchmark file is not redistributed either. The pin is the **original**
+`longmemeval_s`, not `longmemeval-cleaned` — the cleaned release changes the
+bytes and breaks reproduction:
+
+```bash
+huggingface-cli download xiaowu0162/longmemeval longmemeval_s \
+  --repo-type dataset --local-dir exp/models/longmemeval
+# sha256 08d8dad4be43ee2049a22ff5674eb86725d0ce5ff434cde2627e5e8e7e117894
+```
 
 ## Run
 
@@ -95,10 +110,22 @@ python experiment_local.py --out runs/local-512 --stage writes
 python experiment_local.py --out runs/local-512 --stage eval
 python topk_clean.py --out runs/topk_clean_run1.json
 python ttft_bench.py
+python key_overhead.py
+python route_bench.py --out runs/route_sharded.json
+python kv_bench.py --sizes 8,16 --out runs/kv_balanced.json
 ```
 
 `EXP_CUDA_ORDER=1,0` maps cuda:0 to the RTX 4070 Ti SUPER and cuda:1 to the
 RTX 5070 Ti. The layer split is 21/11.
+
+`route_bench.py` is the source of the 536 → 51 ms routing numbers and
+`key_overhead.py` of the 0.33 % / 48-query figures. `kv_bench.py` defaults to
+`--sizes 8,16,32`, but N=32 OOMs on 16 GB cards, so the reported run used
+`8,16`.
+
+Both cards are needed for the reported timings. On a single card set
+`EXP_SHARD=0`; 8B in bf16 leaves little activation headroom there, which is why
+the single-GPU routing numbers were not trusted.
 
 ## Attribution
 
